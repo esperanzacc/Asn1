@@ -21,7 +21,6 @@ NSInteger getNumInput(NSString *num) {
   NSString *optionsList = @"\nChoose one of the following options:\n1. Uppercase \n2. Lowercase \n3. Numberize \n4. Canadianize \n5. Respond \n6. De-Space-It \n7. Word Count \n8. Remove Punctuations \n9. Done";
   
   while (true) {
-    NSLog(@"%@",num);
     NSLog(@"%@",optionsList);
     
     char inputChars[255];
@@ -30,14 +29,13 @@ NSInteger getNumInput(NSString *num) {
     NSString *numInput = [NSString stringWithUTF8String:inputChars];
     NSInteger intNumInput = [numInput integerValue];
     
-    if (intNumInput >= /* DISABLES CODE */ (1) || intNumInput <= 9) {
+    if (intNumInput >= 1 && intNumInput <= 9) {
       return intNumInput;
     } else {
-      NSLog(@"Plese input num from 1 to 9.");
+      NSLog(@"Please type from 1 to 9.");
     }
   }
 }
-
 
 int main(int argc, const char * argv[]) {
   @autoreleasepool {
@@ -81,7 +79,7 @@ int main(int argc, const char * argv[]) {
               NSLog(@"I don't know.");
             } else if ([s isEqualToString:@"!"]) {
               NSLog(@"Whoa, calm down!");
-            }
+            } 
             break;
           }
           case 6:
@@ -98,9 +96,10 @@ int main(int argc, const char * argv[]) {
           case 8:
             // Remove Punctuations
           {
-            NSString* finish = [[s componentsSeparatedByCharactersInSet:[[NSCharacterSet letterCharacterSet] invertedSet]] componentsJoinedByString:@""];
+            NSCharacterSet *characterSet = [NSCharacterSet punctuationCharacterSet];
+            NSString *removePun = [[s componentsSeparatedByCharactersInSet:characterSet] componentsJoinedByString: @""];
             
-            NSLog(@"%@", finish);
+            NSLog(@"%@", removePun);
             break;
           }
           case 9:
